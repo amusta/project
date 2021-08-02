@@ -6,7 +6,7 @@ include_once '../helpers/session_helper.php';
 
 <?php flash('reset') ?>
 
-    <form method="post" action="../controllers/ResetPasswords.php">
+    <form method="post" action="../../controllers/ResetPasswords.php">
         <input type="hidden" name="type" value="send" />
         <input type="text" name="email"
                placeholder="Email">

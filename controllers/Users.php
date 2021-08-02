@@ -51,14 +51,14 @@ class Users {
 
         if($this->userModel->findUserByEmail($data['email'])){
             flash("register", "Email already taken");
-            redirect("../view/signup.php");
+            redirect("../view/user/signup.php");
         }
 
 
         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
         if($this->userModel->register($data)){
-            redirect("../view/login.php");
+            redirect("../view/user/login.php");
         }else{
             die("Something went wrong");
         }
@@ -75,7 +75,7 @@ class Users {
 
         if(empty($data['email']) || empty($data['password'])){
             flash("login", "Please fill out all inputs");
-            header("location: ../view/login.php");
+            header("location: ../view/user/login.php");
             exit();
         }
 
@@ -90,17 +90,19 @@ class Users {
             }else{
 
                 flash("login", "Password Incorrect");
-                redirect("../view/login.php");
+                redirect("../view/user/login.php");
             }
         }else{
             flash("login", "No user found");
-            redirect("../login.php");
+            redirect("../view/user/login.php");
         }
     }
 
     public function createUserSession($user){
-        $_SESSION['id_user'] = $user->usersId;
-        $_SESSION['email'] = $user->usersEmail;
+
+        $_SESSION['id_user'] = $user->id_user;
+        $_SESSION['first_name'] = $user->first_name;
+        $_SESSION['email'] = $user->email;
         redirect("../view/index.php");
     }
 
@@ -110,6 +112,8 @@ class Users {
         session_destroy();
         redirect("../view/index.php");
     }
+
+
 }
 
 $init = new Users;

@@ -7,14 +7,14 @@ if(empty($_GET['selector']) || empty($_GET['validator'])){
 
     if(ctype_xdigit($selector) && ctype_xdigit($validator)) { ?>
         <?php
-        include_once 'header.php';
-        include_once '../helpers/session_helper.php';
+        include_once './view/header.php';
+        include_once './helpers/session_helper.php';
         ?>
         <h1 class="header">Enter New Password</h1>
 
         <?php flash('newReset') ?>
 
-        <form method="post" action="../controllers/ResetPasswords.php">
+        <form method="post" action="../../controllers/ResetPasswords.php">
             <input type="hidden" name="type" value="reset" />
             <input type="hidden" name="selector" value="<?php echo $selector ?>" />
             <input type="hidden" name="validator" value="<?php echo $validator ?>" />
@@ -26,7 +26,7 @@ if(empty($_GET['selector']) || empty($_GET['validator'])){
         </form>
 
         <?php
-        include_once 'footer.php'
+        include_once './view/footer.php'
         ?>
 
         <?php

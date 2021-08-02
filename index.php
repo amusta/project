@@ -3,9 +3,8 @@ include_once 'view/header.php';
 ?>
 
 <h1 id="index-text">Welcome, <?php if(isset($_SESSION['id_user'])){
-        echo explode(" ", $_SESSION['email'])[0];
+        echo explode(" ", $_SESSION['first_name'])[0];
     }else{
-
         echo 'Guest';
     } ?> </h1>
 

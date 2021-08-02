@@ -46,9 +46,9 @@ class User
         }
     }
 
-    public function login($Email, $password)
+    public function login($email, $password)
     {
-        $row = $this->findUserByEmail($Email);
+        $row = $this->findUserByEmail($email);
 
         if ($row == false) return false;
 
@@ -63,8 +63,20 @@ class User
     public function resetPassword($newPwdHash, $tokenEmail)
     {
         $this->db->query('UPDATE users SET password=:password WHERE email=:email');
-        $this->db->bind(':pwd', $newPwdHash);
+        $this->db->bind(':password', $newPwdHash);
         $this->db->bind(':email', $tokenEmail);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function deteleUser($email)
+    {
+        $this->db->query('DELETE * FROM users WHERE email = :email');
+        $this->db->bind(':email', $email);
 
         if ($this->db->execute()) {
             return true;
