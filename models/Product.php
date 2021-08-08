@@ -5,8 +5,18 @@ class Product
 {
     private $db;
 
-    public function __construct()
+    private $product_name;
+    private function getProductName(){return $this->product_name;}
+    private function setProductName($product_name){$this->product_name = $product_name;}
+
+    private $img;
+    private function getProductImg(){return $this->img;}
+    private function setProductImg($img){$this->product_name = $img;}
+
+    public function __construct($product_name = '', $img = '')
     {
+        $this->product_name = $product_name;
+        $this->img=$img;
         $this->db = new Database;
     }
 
@@ -26,10 +36,15 @@ class Product
 
     public function getAllProducts()
     {
+        $models = [];
         $this->db->query('SELECT * FROM products ');
+        if($this->db->execute()) {
+            while ($this->db->resultSet()) {
+                array_push($models);
+            }
+        }
+        return $models;
 
-        $rows = $this->db->resultSet();
-        return $rows;
 
     }
 
@@ -38,14 +53,27 @@ class Product
         $this->db->query('INSERT INTO products (product_name, description, price, weight, quantity, img) 
         VALUES (:product_name, :description, :price, :weight, :quantity, :img)');
         //Bind values
-        return $this->bindValues($data);
+        $this->bindValues($data);
+
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
     }
+
 
     public function editProduct($id)
     {
      $this->db->query('UPDATE products SET product_name=:product_name, description=:description, price=:price, weight=:weight, quantity=:quantity, img=:img');
 
-        return $this->bindValues($id);
+        $this->bindValues($id);
+
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
 
     }
 

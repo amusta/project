@@ -1,6 +1,6 @@
 <?php
-include_once 'header.php';
-include_once '../helpers/session_helper.php';
+include_once '../../header.php';
+include_once '../../helpers/session_helper.php';
 ?>
     <h1 class="header">Reset Password</h1>
 
@@ -14,5 +14,5 @@ include_once '../helpers/session_helper.php';
     </form>
 
 <?php
-include_once 'footer.php'
+include_once '../../footer.php'
 ?>

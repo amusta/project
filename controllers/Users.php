@@ -32,12 +32,12 @@ class Users {
             empty($data['city']) || empty($data['phone']) || empty($data['email']) ||
             empty($data['password']) || empty($data['pwdRepeat'])){
             flash("register", "Please fill out all inputs");
-            redirect("../view/signup.php");
+            redirect("../view/user/signup.php");
         }
 
         if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)){
             flash("register", "Invalid email");
-            redirect("../view/signup.php");
+            redirect("../view/user/signup.php");
         }
 
         if(strlen($data['password']) < 6){
@@ -45,7 +45,7 @@ class Users {
             redirect("../view/signup.php");
         } else if($data['password'] !== $data['pwdRepeat']){
             flash("register", "Passwords don't match");
-            redirect("../view/signup.php");
+            redirect("../view/user/signup.php");
         }
 
 
@@ -103,14 +103,14 @@ class Users {
         $_SESSION['id_user'] = $user->id_user;
         $_SESSION['first_name'] = $user->first_name;
         $_SESSION['email'] = $user->email;
-        redirect("../view/index.php");
+        redirect("../index.php");
     }
 
     public function logout(){
         unset($_SESSION['id_user']);
         unset($_SESSION['email']);
         session_destroy();
-        redirect("../view/index.php");
+        redirect("../index.php");
     }
 
 
@@ -127,7 +127,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $init->login();
             break;
         default:
-            redirect("../view/index.php");
+            redirect("../index.php");
     }
 
 }else{

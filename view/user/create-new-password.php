@@ -7,8 +7,8 @@ if(empty($_GET['selector']) || empty($_GET['validator'])){
 
     if(ctype_xdigit($selector) && ctype_xdigit($validator)) { ?>
         <?php
-        include_once './view/header.php';
-        include_once './helpers/session_helper.php';
+        include_once '../../header.php';
+        include_once '../../helpers/session_helper.php';
         ?>
         <h1 class="header">Enter New Password</h1>
 
@@ -26,7 +26,7 @@ if(empty($_GET['selector']) || empty($_GET['validator'])){
         </form>
 
         <?php
-        include_once './view/footer.php'
+        include_once '../../footer.php'
         ?>
 
         <?php

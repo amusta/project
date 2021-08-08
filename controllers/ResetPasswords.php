@@ -48,7 +48,7 @@ class ResetPasswords{
 
         $token = random_bytes(32);
 
-        $url = 'http://project.test/view/create-new-password.php?selector='.$selector.'&validator='.bin2hex($token);
+        $url = 'http://project.test/view/user/create-new-password.php?selector='.$selector.'&validator='.bin2hex($token);
 
         $expires = date("U") + 1800;
         if(!$this->resetModel->deleteEmail($usersEmail)){
@@ -85,7 +85,7 @@ class ResetPasswords{
             'password' => trim($_POST['password']),
             'pwd-repeat' => trim($_POST['pwd-repeat'])
         ];
-        $url = '../view/create-new-password.php?selector='.$data['selector'].'&validator='.$data['validator'];
+        $url = '../view/user/create-new-password.php?selector='.$data['selector'].'&validator='.$data['validator'];
 
         if(empty($_POST['password'] || $_POST['pwd-repeat'])){
             flash("newReset", "Please fill out all fields");

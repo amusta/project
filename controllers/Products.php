@@ -1,6 +1,6 @@
 <?php
 
-require_once '../models/User.php';
+require_once '../models/Product.php';
 require_once '../helpers/session_helper.php';
 
 class Products
@@ -11,9 +11,9 @@ class Products
         $this->productModel = new Products;
     }
 
-    public function productListing()
+    public function getAllProducts()
     {
-        $product = $this->productModel->getAllProducts();
+       $products = $this->productModel->getAllProducts();
     }
 
     public function createNewProduct(){
@@ -41,6 +41,7 @@ class Products
 
     public function deleteProduct()
     {
+
 
     }
 
